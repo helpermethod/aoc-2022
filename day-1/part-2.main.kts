@@ -5,7 +5,7 @@ import java.io.File
 File("input.txt")
     .readText()
     .trimEnd()
-    .split("\n\n".toRegex())
+    .split("\n\n")
     .map { it.lines().sumOf(String::toInt) }
     .sortedDescending()
     .take(3)
