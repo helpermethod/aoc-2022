@@ -7,4 +7,3 @@ File("input.txt")
     .trimEnd()
     .split("\n\n")
     .maxOf { it.lines().sumOf(String::toInt) }
-m
