@@ -8,7 +8,7 @@ File("input.txt")
     .split("\n\n".toRegex())
     .map {
         it
-            .split("\n".toRegex())
+            .lines()
             .sumOf(String::toInt)
     }
     .sortedDescending()
