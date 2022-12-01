@@ -6,8 +6,4 @@ File("input.txt")
     .readText()
     .trimEnd()
     .split("\n\n".toRegex())
-    .maxOfOrNull {
-        it
-            .lines()
-            .sumOf(String::toInt)
-    }
+    .maxOfOrNull { it.lines().sumOf(String::toInt) }
