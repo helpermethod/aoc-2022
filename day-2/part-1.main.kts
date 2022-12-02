@@ -1,12 +1,26 @@
 #!/usr/bin/env kotlin
 
+import Part_1_main.Shape.PAPER
+import Part_1_main.Shape.ROCK
+import Part_1_main.Shape.SCISSOR
 import java.io.File
 
-sealed class Shape(private val value: Int) {
-    private fun draws() = this
+enum class Shape(private val value: Int) {
+    ROCK(1) {
+        override fun wins() = SCISSOR
+        override fun loses() = PAPER
+    },
+    PAPER(2) {
+        override fun wins() = ROCK
+        override fun loses() = SCISSOR
+    },
+    SCISSOR(3) {
+        override fun wins() = PAPER
+        override fun loses() = ROCK
+    };
+    fun draws(): Shape = this
     abstract fun wins(): Shape
     abstract fun loses(): Shape
-
     fun interactWith(shape: Shape) =
         value + when (shape) {
             wins() -> 6
@@ -15,30 +29,15 @@ sealed class Shape(private val value: Int) {
         }
 }
 
-object Rock : Shape(1) {
-    override fun wins() = Scissor
-    override fun loses() = Paper
-}
-
-object Paper : Shape(2) {
-    override fun wins() = Rock
-    override fun loses() = Scissor
-}
-
-object Scissor : Shape(3) {
-    override fun wins() = Paper
-    override fun loses() = Rock
-}
-
 data class Game(private val first: Shape, private val second: Shape) {
     fun play() = second.interactWith(first)
 }
 
 fun createShape(token: String) =
     when (token) {
-        "A", "X" -> Rock
-        "B", "Y" -> Paper
-        else -> Scissor
+        "A", "X" -> ROCK
+        "B", "Y" -> PAPER
+        else -> SCISSOR
     }
 
 fun createGame(first: String, second: String) = Game(createShape(first), createShape(second))
