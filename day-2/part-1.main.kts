@@ -18,6 +18,7 @@ enum class Shape(private val value: Int) {
         override fun wins() = PAPER
         override fun loses() = ROCK
     };
+
     fun draws(): Shape = this
     abstract fun wins(): Shape
     abstract fun loses(): Shape

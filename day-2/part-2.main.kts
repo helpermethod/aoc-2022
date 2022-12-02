@@ -4,6 +4,7 @@ import Part_2_main.Shape.PAPER
 import Part_2_main.Shape.ROCK
 import Part_2_main.Shape.SCISSOR
 import java.io.File
+
 enum class Shape(private val value: Int) {
     ROCK(1) {
         override fun wins() = SCISSOR
@@ -17,6 +18,7 @@ enum class Shape(private val value: Int) {
         override fun wins() = PAPER
         override fun loses() = ROCK
     };
+
     fun draws(): Shape = this
     abstract fun wins(): Shape
     abstract fun loses(): Shape
@@ -33,7 +35,7 @@ data class Game(private val first: Shape, private val outcome: Shape.() -> Shape
 }
 
 fun createShape(token: String) =
-    when(token) {
+    when (token) {
         "A" -> ROCK
         "B" -> PAPER
         else -> SCISSOR
