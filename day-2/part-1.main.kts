@@ -3,14 +3,15 @@
 import java.io.File
 
 sealed class Shape(private val value: Int) {
+    private fun draws() = this
     abstract fun wins(): Shape
     abstract fun loses(): Shape
 
     fun interactWith(shape: Shape) =
         value + when (shape) {
             wins() -> 6
-            loses() -> 0
-            else -> 3
+            draws() -> 3
+            else -> 0
         }
 }
 

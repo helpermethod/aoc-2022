@@ -29,8 +29,8 @@ object Scissor : Shape(3) {
     override fun loses() = Rock
 }
 
-data class Game(private val first: Shape, private val outcome: (Shape) -> Shape) {
-    fun play() = outcome(first).interactWith(first)
+data class Game(private val first: Shape, private val outcome: Shape.() -> Shape) {
+    fun play() = first.outcome().interactWith(first)
 }
 
 fun createShape(token: String) =
@@ -42,9 +42,9 @@ fun createShape(token: String) =
 
 fun createOutcome(token: String) =
     when (token) {
-        "X" -> Shape::loses
+        "X" -> Shape::wins
         "Y" -> Shape::draws
-        else -> Shape::wins
+        else -> Shape::loses
     }
 
 fun createGame(first: String, second: String) =
