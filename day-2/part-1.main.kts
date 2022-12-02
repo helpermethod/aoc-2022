@@ -19,7 +19,7 @@ enum class Shape(private val value: Int) {
         override fun loses() = ROCK
     };
 
-    fun draws(): Shape = this
+    private fun draws(): Shape = this
     abstract fun wins(): Shape
     abstract fun loses(): Shape
     fun interactWith(shape: Shape) =
