@@ -15,4 +15,3 @@ File("input.txt")
             .map { (first, second) -> first.intersect(second.toSet()).first() }
             .sumOf { translate[it]!! }
     }
-
