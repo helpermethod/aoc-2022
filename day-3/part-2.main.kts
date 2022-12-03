@@ -9,12 +9,11 @@ File("input.txt")
     .useLines { lines ->
         lines
             .chunked(3)
-            .map { chunk ->
-                val elves = chunk.map { it.toSet() }
-
-                elves.reduce { left, right ->
-                    left.intersect(right)
-                }.first()
+            .map { group ->
+                group.map { it.toSet() }
+            }
+            .map { backpacks ->
+                backpacks.reduce { left, right -> left.intersect(right) }.first()
             }
             .sumOf { translate[it]!! }
     }
