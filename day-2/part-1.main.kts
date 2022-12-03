@@ -22,7 +22,7 @@ enum class Shape(private val value: Int) {
     private fun draws(): Shape = this
     abstract fun wins(): Shape
     abstract fun loses(): Shape
-    fun interactWith(shape: Shape) =
+    fun playAgainst(shape: Shape) =
         value + when (shape) {
             wins() -> 6
             draws() -> 3
@@ -31,7 +31,7 @@ enum class Shape(private val value: Int) {
 }
 
 data class Game(private val first: Shape, private val second: Shape) {
-    fun play() = second.interactWith(first)
+    fun play() = second.playAgainst(first)
 }
 
 fun createShape(token: String) =

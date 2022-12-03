@@ -22,7 +22,7 @@ enum class Shape(private val value: Int) {
     fun draws(): Shape = this
     abstract fun wins(): Shape
     abstract fun loses(): Shape
-    fun interactWith(shape: Shape) =
+    fun playAgainst(shape: Shape) =
         value + when (shape) {
             wins() -> 6
             draws() -> 3
@@ -30,8 +30,8 @@ enum class Shape(private val value: Int) {
         }
 }
 
-data class Game(private val first: Shape, private val outcome: Shape.() -> Shape) {
-    fun play() = first.outcome().interactWith(first)
+data class Game(private val first: Shape, private val selectOutcome: Shape.() -> Shape) {
+    fun play() = first.selectOutcome().playAgainst(first)
 }
 
 fun createShape(token: String) =
@@ -41,7 +41,7 @@ fun createShape(token: String) =
         else -> SCISSOR
     }
 
-fun createOutcome(token: String) =
+fun createOutcomeSelector(token: String) =
     when (token) {
         "X" -> Shape::wins
         "Y" -> Shape::draws
@@ -49,7 +49,7 @@ fun createOutcome(token: String) =
     }
 
 fun createGame(first: String, second: String) =
-    Game(createShape(first), createOutcome(second))
+    Game(createShape(first), createOutcomeSelector(second))
 
 File("input.txt")
     .useLines { lines ->
