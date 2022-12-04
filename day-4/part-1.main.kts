@@ -10,11 +10,5 @@ File("input.txt")
         lines
             .map { it.split(",") }
             .map { (first, second) -> first.toRangeSet() to second.toIntSet() }
-            .count { (first, second) ->
-                when {
-                    first.containsAll(second) -> true
-                    second.containsAll(first) -> true
-                    else -> false
-                }
-            }
+            .count { (first, second) -> first.containsAll(second) || second.containsAll(first) }
     }
