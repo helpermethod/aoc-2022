@@ -9,10 +9,6 @@ File("input.txt")
     .useLines { lines ->
         lines
             .map { it.split(",") }
-            .map { (first, second) ->
-                first.toIntSet() to second.toIntSet()
-            }
-            .count { (first, second) ->
-                first.intersect(second).isNotEmpty()
-            }
+            .map { (first, second) -> first.toIntSet() to second.toIntSet() }
+            .count { (first, second) -> first.intersect(second).isNotEmpty() }
     }

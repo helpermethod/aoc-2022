@@ -9,9 +9,7 @@ File("input.txt")
     .useLines { lines ->
         lines
             .map { it.split(",") }
-            .map { (first, second) ->
-                first.toIntSet() to second.toIntSet()
-            }
+            .map { (first, second) -> first.toIntSet() to second.toIntSet() }
             .count { (first, second) ->
                 when {
                     first.containsAll(second) -> true
