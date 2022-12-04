@@ -22,6 +22,7 @@ enum class Shape(private val value: Int) {
     fun draws(): Shape = this
     abstract fun wins(): Shape
     abstract fun loses(): Shape
+
     fun playAgainst(shape: Shape) =
         value + when (shape) {
             wins() -> 6

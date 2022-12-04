@@ -2,7 +2,7 @@
 
 import java.io.File
 
-val translate =
+val priorities =
     (('A'..'Z').zip(27..52) + ('a'..'z').zip(1..27)).toMap()
 
 fun compartmentalize(line: String) =
@@ -13,5 +13,5 @@ File("input.txt")
         lines
             .map(::compartmentalize)
             .map { (first, second) -> first.intersect(second.toSet()).first() }
-            .sumOf { translate[it]!! }
+            .sumOf { priorities[it]!! }
     }

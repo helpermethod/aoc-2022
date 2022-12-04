@@ -2,7 +2,7 @@
 
 import java.io.File
 
-val translate =
+val priorities =
     (('A'..'Z').zip(27..52) + ('a'..'z').zip(1..27)).toMap()
 
 fun backpacks(group: List<String>) =
@@ -16,6 +16,6 @@ File("input.txt")
             .map { backpacks ->
                 backpacks.reduce { left, right -> left.intersect(right) }.first()
             }
-            .sumOf { translate[it]!! }
+            .sumOf { priorities[it]!! }
     }
 
