@@ -13,9 +13,7 @@ File("input.txt")
         lines
             .chunked(3)
             .map(::backpacks)
-            .map { backpacks ->
-                backpacks.reduce { left, right -> left.intersect(right) }.first()
-            }
+            .map { backpacks -> backpacks.reduce { left, right -> left.intersect(right) }.first() }
             .sumOf { priorities[it]!! }
     }
 
