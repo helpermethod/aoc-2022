@@ -7,26 +7,26 @@ import java.io.File
 
 enum class Shape(private val value: Int) {
     ROCK(1) {
-        override fun wins() = SCISSOR
-        override fun loses() = PAPER
+        override fun winsAgainst() = SCISSOR
+        override fun losesAgainst() = PAPER
     },
     PAPER(2) {
-        override fun wins() = ROCK
-        override fun loses() = SCISSOR
+        override fun winsAgainst() = ROCK
+        override fun losesAgainst() = SCISSOR
     },
     SCISSOR(3) {
-        override fun wins() = PAPER
-        override fun loses() = ROCK
+        override fun winsAgainst() = PAPER
+        override fun losesAgainst() = ROCK
     };
 
-    private fun draws(): Shape = this
-    abstract fun wins(): Shape
-    abstract fun loses(): Shape
+    private fun drawsAgainst(): Shape = this
+    abstract fun winsAgainst(): Shape
+    abstract fun losesAgainst(): Shape
 
     fun playAgainst(shape: Shape) =
         value + when (shape) {
-            wins() -> 6
-            draws() -> 3
+            winsAgainst() -> 6
+            losesAgainst() -> 3
             else -> 0
         }
 }
